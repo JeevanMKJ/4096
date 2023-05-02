@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import Grid from "./components/grid";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -8,7 +9,11 @@ const client = new ApolloClient({
 });
 
 function App() {
-  return <ApolloProvider client={client}></ApolloProvider>;
+  return (
+  <ApolloProvider client={client}>
+    <Grid />
+  </ApolloProvider>
+  );
 }
 
 export default App;
