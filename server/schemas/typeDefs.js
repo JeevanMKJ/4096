@@ -9,9 +9,11 @@ type User {
     scores: [Scores]
   }
 
+
   type Score {
     score: Int
   }
+
 `;
 
 module.exports = typeDefs;
