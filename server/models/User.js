@@ -19,7 +19,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    scores: [scoreSchema],
+    scores: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Scores',
+      }
+    ],
   },
   // set this to use virtual below
   {

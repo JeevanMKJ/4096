@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+
 module.exports = {
     authMiddleware: function ({ req }) {
       // allows token to be sent via req.body, req.query, or headers
@@ -16,7 +17,7 @@ module.exports = {
   
       // if token can be verified, add the decoded user's data to the request so it can be accessed in the resolver
       try {
-        const { data } = jwt.verify(token, secret, { maxAge: expiration });
+        const { data } = jwt.verify(token, secret, { maxAge: process.env.expiration });
         req.user = data;
       } catch {
         console.log('Invalid token');

@@ -6,7 +6,13 @@ const scoreSchema = new Schema({
     required: true,
     unique: true,
   },
+  player: {
+    type: String,
+    required: true,
+    trim: true,
+  }
 });
 
+const Scores = model('Scores', scoreSchema);
 
-module.exports = scoreSchema;
+module.exports = Scores;
