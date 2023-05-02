@@ -9,19 +9,28 @@ type User {
     scores: [Scores]
   }
 
-  type Score {
+  type Scores {
     score: Int
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
-    me(id: ID!): User
+    users: [User]
+    user(username: String): User
+    scores(username: String): [Scores]
+    me: User
      }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveScore(score: Int!): User
-    removeScore(score: Int!): User
+    removeUser(userId: ID!): User
+    saveScore(scores: Int!): User
+    removeScore(scores: Int!): User
   }
 `;
 

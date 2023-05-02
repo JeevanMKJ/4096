@@ -1,29 +1,36 @@
-const { User } = require("../models");
+const { User, Scores } = require("../models");
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('scores');
+    },
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('scores');
+    },
+    scores: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Scores.find(params).sort({ createdAt: -1 });
     },
   },
   
   Mutation: {
     //POST scores
-    saveScore: async (parent, { userId, score }, context) => {
-    
+    saveScore: async (parent, { scores }, context) => {
       if (context.user) {
-      return User.findOneAndUpdate(
-        { _id: userId },
-        {
-          $addToSet: { scores: score },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
+        const score = await Scores.create({
+          scores,
+          player: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { scores: scores.scores } }
         );
-     } 
-     throw new AuthenticationError("You must be logged in to save scores!")
+
+        return score;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     //POST users
     addUser: async (parent, { username, email, password }) => {
@@ -48,16 +55,25 @@ const resolvers = {
       return { token, user };
     },
     //UPDATE high scores------????????????????
-    removeScore: async (parent, { userId, score }) => {
-      return User.findOneAndUpdate(
-        { _id: userId },
-        { $pull: { scores: score } },
-        { new: true }
-      );
+    removeScore: async (parent, { scores }, context) => {
+      if (context.user) {
+        const score = await Scores.findOneAndDelete({
+          scores: scores,
+          player: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { scores: scores.scores } }
+        );
+
+        return score;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     //DELETE user
     removeUser: async (parent, { userId }) => {
-      return User.findOneAndDelete({ _id: usereId });
+      return User.findOneAndDelete({ _id: userId });
     },
   },
 };
