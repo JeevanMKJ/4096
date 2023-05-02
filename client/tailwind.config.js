@@ -6,8 +6,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        mauve: "#D3C4BE",
-        tan: "#EBCFC4",
+        'mauve': '#D3C4BE',
+        'tan': '#EBCFC4'
+
       },
     },
   },
