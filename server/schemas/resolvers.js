@@ -55,6 +55,7 @@ const resolvers = {
       return { token, user };
     },
     //UPDATE high scores------????????????????
+
     removeScore: async (parent, { scores }, context) => {
       if (context.user) {
         const score = await Scores.findOneAndDelete({
@@ -70,6 +71,7 @@ const resolvers = {
         return score;
       }
       throw new AuthenticationError('You need to be logged in!');
+
     },
     //DELETE user
     removeUser: async (parent, { userId }) => {

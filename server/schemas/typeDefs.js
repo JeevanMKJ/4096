@@ -9,6 +9,7 @@ type User {
     scores: [Scores]
   }
 
+
   type Scores {
     score: Int
   }
@@ -23,6 +24,7 @@ type User {
     user(username: String): User
     scores(username: String): [Scores]
     me: User
+
      }
 
   type Mutation {
@@ -31,6 +33,7 @@ type User {
     removeUser(userId: ID!): User
     saveScore(scores: Int!): User
     removeScore(scores: Int!): User
+
   }
 `;
 
