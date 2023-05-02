@@ -13,6 +13,7 @@
     "graphql": "^15.4.0",
     "postcss": "^8.4.23",
     "react": "^17.0.1",
+    "react-css-grid": "^2.0.0-0",
     "react-dom": "^17.0.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.1",
