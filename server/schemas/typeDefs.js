@@ -8,6 +8,12 @@ type User {
     password: String!
     scores: [Scores]
   }
+
+
+  type Score {
+    score: Int
+  }
+
 `;
 
 module.exports = typeDefs;

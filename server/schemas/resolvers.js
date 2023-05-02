@@ -1,27 +1,63 @@
-const { undefined, undefined2 } = require("../models");
+const { User } = require("../models");
 
 const resolvers = {
   Query: {
-    tech: async () => {
-      return undefined.find({});
-    },
-    matchups: async (parent, { _id }) => {
-      const params = _id ? { _id } : {};
-      return undefined2.find(params);
+    users: async () => {
+      return User.find().populate('thoughts');
     },
   },
+  
   Mutation: {
-    createMatchup: async (parent, args) => {
-      const matchup = await undefined2.create(args);
-      return matchup;
+    //POST scores
+    saveScore: async (parent, { userId, score }, context) => {
+    
+      if (context.user) {
+      return User.findOneAndUpdate(
+        { _id: userId },
+        {
+          $addToSet: { scores: score },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+        );
+     } 
+     throw new AuthenticationError("You must be logged in to save scores!")
     },
-    createVote: async (parent, { _id, techNum }) => {
-      const vote = await undefined2.findOneAndUpdate(
-        { _id },
-        { $inc: { [`tech${techNum}_votes`]: 1 } },
+    //POST users
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({username, email, password});
+      const token = signToken(user);
+      return { user, token };
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('No user with this email found!');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect password!');
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+    //UPDATE high scores------????????????????
+    removeScore: async (parent, { userId, skill }) => {
+      return User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { scores: score } },
         { new: true }
       );
-      return vote;
+    },
+    //DELETE user
+    removeUser: async (parent, { userId }) => {
+      return User.findOneAndDelete({ _id: usereId });
     },
   },
 };
