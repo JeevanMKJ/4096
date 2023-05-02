@@ -48,7 +48,7 @@ const resolvers = {
       return { token, user };
     },
     //UPDATE high scores------????????????????
-    removeScore: async (parent, { userId, skill }) => {
+    removeScore: async (parent, { userId, score }) => {
       return User.findOneAndUpdate(
         { _id: userId },
         { $pull: { scores: score } },

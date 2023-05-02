@@ -9,11 +9,20 @@ type User {
     scores: [Scores]
   }
 
-
   type Score {
     score: Int
   }
 
+  type Query {
+    me(id: ID!): User
+     }
+
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    saveScore(score: Int!): User
+    removeScore(score: Int!): User
+  }
 `;
 
 module.exports = typeDefs;
