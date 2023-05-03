@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
-
+// require('dotenv').config();
 
 module.exports = {
     authMiddleware: function ({ req }) {
+
       // allows token to be sent via req.body, req.query, or headers
       let token = req.body.token || req.query.token || req.headers.authorization;
   
@@ -17,7 +18,7 @@ module.exports = {
   
       // if token can be verified, add the decoded user's data to the request so it can be accessed in the resolver
       try {
-        const { data } = jwt.verify(token, secret, { maxAge: process.env.expiration });
+        const { data } = jwt.verify(token, process.env.SECRET, { maxAge: '2h' });
         req.user = data;
       } catch {
         console.log('Invalid token');
@@ -28,7 +29,7 @@ module.exports = {
     },
     signToken: function ({ email, name, _id }) {
       const payload = { email, name, _id };
-      return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+      return jwt.sign({ data: payload }, process.env.SECRET, { expiresIn: '2h' });
     },
   };
   
