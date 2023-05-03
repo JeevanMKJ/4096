@@ -1,6 +1,7 @@
 import React from "react";
 
 function Grid() {
+
     return (
         <>
             <div class="container m-5">
@@ -73,6 +74,7 @@ function Grid() {
             </div>
         </>
     )
+
 }
 
 export default Grid;

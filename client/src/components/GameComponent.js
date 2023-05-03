@@ -1,3 +1,5 @@
+
+
 export const getEmptyBoard = () => [
     0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,
@@ -44,3 +46,4 @@ board[row][col] = 2;
 return board;
 
 };
+
