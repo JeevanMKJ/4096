@@ -1,5 +1,9 @@
 const { User, Scores } = require("../models");
 
+const { signToken } = require('../utils/auth.js')
+const { AuthenticationError } = require('apollo-server-express');
+
+
 const resolvers = {
   Query: {
     users: async () => {
@@ -7,25 +11,34 @@ const resolvers = {
     },
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('scores');
+
     },
     scores: async (parent, { username }) => {
       const params = username ? { username } : {};
       return Scores.find(params).sort({ createdAt: -1 });
-    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
   },
   
   Mutation: {
     //POST scores
-    saveScore: async (parent, { scores }, context) => {
+
+    saveScore: async (parent, { points }, context) => {
       if (context.user) {
         const score = await Scores.create({
-          scores,
-          player: context.user.username,
+          points,
+
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { scores: scores.scores } }
+
+          { $addToSet: { scores: score.points } }
+
         );
 
         return score;
@@ -56,22 +69,24 @@ const resolvers = {
     },
     //UPDATE high scores------????????????????
 
-    removeScore: async (parent, { scores }, context) => {
+    removeScore: async (parent, { points }, context) => {
       if (context.user) {
         const score = await Scores.findOneAndDelete({
-          scores: scores,
-          player: context.user.username,
+          points,
+          
+
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { scores: scores.scores } }
+
+          { $pull: { scores: scores.points } }
+
         );
 
         return score;
       }
       throw new AuthenticationError('You need to be logged in!');
-
     },
     //DELETE user
     removeUser: async (parent, { userId }) => {
