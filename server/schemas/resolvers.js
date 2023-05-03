@@ -1,4 +1,5 @@
 const { User, Scores } = require("../models");
+
 const { signToken } = require('../utils/auth.js')
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -10,11 +11,11 @@ const resolvers = {
     },
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('scores');
+
     },
     scores: async (parent, { username }) => {
       const params = username ? { username } : {};
       return Scores.find(params).sort({ createdAt: -1 });
-    },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id });
@@ -25,15 +26,19 @@ const resolvers = {
   
   Mutation: {
     //POST scores
+
     saveScore: async (parent, { points }, context) => {
       if (context.user) {
         const score = await Scores.create({
           points,
+
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
+
           { $addToSet: { scores: score.points } }
+
         );
 
         return score;
@@ -63,16 +68,20 @@ const resolvers = {
       return { token, user };
     },
     //UPDATE high scores------????????????????
+
     removeScore: async (parent, { points }, context) => {
       if (context.user) {
         const score = await Scores.findOneAndDelete({
           points,
           
+
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
+
           { $pull: { scores: scores.points } }
+
         );
 
         return score;

@@ -125,38 +125,109 @@
 //   );
 // }
 
+// import React, { useState } from "react";
+// import {
+//   CalendarIcon,
+//   UsersIcon,
+//   FolderIcon,
+//   HomeIcon,
+// } from "@heroicons/react/outline";
+// import GameComponent from "./GameComponent.js";
+// import HighScoresComponent from "./HighScoresComponent.js";
+// import HowToPlayComponent from "./HowToPlayComponent.js";
+// import ProfileComponent from "./ProfileComponent.js";
+
+// const navigation = [
+//   { name: "Game", component: GameComponent, icon: HomeIcon, current: true },
+//   {
+//     name: "High Scores",
+//     component: HighScoresComponent,
+//     icon: UsersIcon,
+//     current: false,
+//   },
+//   {
+//     name: "How To Play",
+//     component: HowToPlayComponent,
+//     icon: FolderIcon,
+//     current: false,
+//   },
+//   {
+//     name: "Profile",
+//     component: ProfileComponent,
+//     icon: CalendarIcon,
+//     current: false,
+//   },
+// ];
+
+// function classNames(...classes) {
+//   return classes.filter(Boolean).join(" ");
+// }
+
+// export default function Navigation() {
+//   const [activeSection, setActiveSection] = useState("About Me");
+
+//   const handleNavClick = (section) => {
+//     setActiveSection(section);
+//   };
+
+//   const renderSection = () => {
+//     const activeNavItem = navigation.find(
+//       (item) => item.name === activeSection
+//     );
+//     return activeNavItem ? <activeNavItem.component /> : <GameComponent />;
+//   };
+
+//   return (
+//     <>
+//       <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
+//         <nav className="flex flex-1 flex-col">
+//           <ul className="flex flex-1 flex-col gap-y-7">
+//             <li>
+//               <ul className="-mx-2 space-y-1">
+//                 {navigation.map((item) => (
+//                   <li key={item.name}>
+//                     <button
+//                       onClick={() => handleNavClick(item.name)}
+//                       className={classNames(
+//                         item.name === activeSection
+//                           ? "bg-gray-800 text-white"
+//                           : "text-gray-400 hover:text-white hover:bg-gray-800",
+//                         "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+//                       )}
+//                     >
+//                       <item.icon
+//                         className="h-6 w-6 shrink-0"
+//                         aria-hidden="true"
+//                       />
+//                       {item.name}
+//                     </button>
+//                   </li>
+//                 ))}
+//               </ul>
+//             </li>
+//           </ul>
+//         </nav>
+//       </div>
+//       <main className="flex-grow w-full">
+//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//           <div className="flex flex-col mt-8">{renderSection()}</div>
+//         </div>
+//       </main>
+//     </>
+//   );
+// }
+
 import React, { useState } from "react";
-import {
-  CalendarIcon,
-  UsersIcon,
-  FolderIcon,
-  HomeIcon,
-} from "@heroicons/react/outline";
 import GameComponent from "./GameComponent.js";
 import HighScoresComponent from "./HighScoresComponent.js";
 import HowToPlayComponent from "./HowToPlayComponent.js";
 import ProfileComponent from "./ProfileComponent.js";
 
 const navigation = [
-  { name: "Game", component: GameComponent, icon: HomeIcon, current: true },
-  {
-    name: "High Scores",
-    component: HighScoresComponent,
-    icon: UsersIcon,
-    current: false,
-  },
-  {
-    name: "How To Play",
-    component: HowToPlayComponent,
-    icon: FolderIcon,
-    current: false,
-  },
-  {
-    name: "Profile",
-    component: ProfileComponent,
-    icon: CalendarIcon,
-    current: false,
-  },
+  { name: "Game", component: GameComponent, current: true },
+  { name: "High Scores", component: HighScoresComponent, current: false },
+  { name: "How To Play", component: HowToPlayComponent, current: false },
+  { name: "Profile", component: ProfileComponent, current: false },
 ];
 
 function classNames(...classes) {
@@ -195,10 +266,6 @@ export default function Navigation() {
                         "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                       )}
                     >
-                      <item.icon
-                        className="h-6 w-6 shrink-0"
-                        aria-hidden="true"
-                      />
                       {item.name}
                     </button>
                   </li>

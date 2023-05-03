@@ -4,9 +4,17 @@ module.exports = {
   darkMode: false,
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        mauve: "#D3C4BE",
+        tan: "#EBCFC4",
+      },
+    },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
   variants: {
     extend: {},
   },
