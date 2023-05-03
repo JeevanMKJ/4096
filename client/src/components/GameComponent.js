@@ -46,7 +46,8 @@
 // };
 
 import React from "react";
+import Grid from "./grid";
 
 export default function GameComponent() {
-  return <h1>Hello World!</h1>;
+  return <Grid />;
 }
