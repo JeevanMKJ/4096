@@ -20,7 +20,7 @@ function App() {
       <Navigation />
       {/* <SignUpLoginInPage /> */}
       {/* <Grid /> */}
-      <FooterComponent />/
+      <FooterComponent />
     </ApolloProvider>
   );
 }
