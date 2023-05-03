@@ -40,7 +40,7 @@ while (board[row][col] !== 0) {
     [row, col] = getRandomSpot();
 }
 
-board[row][col] = 4;
+board[row][col] = 2;
 return board;
 
 };
