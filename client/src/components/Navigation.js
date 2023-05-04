@@ -90,19 +90,19 @@
 //   );
 // }
 
-import React, { useState } from "react";
-import { Disclosure } from "@headlessui/react";
-import GameComponent from "./GameComponent.js";
-import HighScoresComponent from "./HighScoresComponent.js";
-import HowToPlayComponent from "./HowToPlayComponent.js";
-import ProfileComponent from "./ProfileComponent.js";
+// import React, { useState } from "react";
+// import { Disclosure } from "@headlessui/react";
+// import GameComponent from "./GameComponent.js";
+// import HighScoresComponent from "./HighScoresComponent.js";
+// import HowToPlayComponent from "./HowToPlayComponent.js";
+// import ProfileComponent from "./ProfileComponent.js";
 
-const navigation = [
-  { name: "Game", component: GameComponent, current: true },
-  { name: "High Scores", component: HighScoresComponent, current: false },
-  { name: "How To Play", component: HowToPlayComponent, current: false },
-  { name: "Profile", component: ProfileComponent, current: false },
-];
+// const navigation = [
+//   { name: "Game", component: GameComponent, current: true },
+//   { name: "High Scores", component: HighScoresComponent, current: false },
+//   { name: "How To Play", component: HowToPlayComponent, current: false },
+//   { name: "Profile", component: ProfileComponent, current: false },
+// ];
 
 // function classNames(...classes) {
 //   return classes.filter(Boolean).join(" ");
@@ -175,6 +175,60 @@ const navigation = [
 //   { name: "Resume", href: "", current: false },
 // ];
 
+// import React, { useState } from "react";
+// import { Disclosure } from "@headlessui/react";
+// import GameComponent from "./GameComponent.js";
+// import HighScoresComponent from "./HighScoresComponent.js";
+// import HowToPlayComponent from "./HowToPlayComponent.js";
+// import ProfileComponent from "./ProfileComponent.js";
+
+// const navigation = [
+//   { name: "Game", component: GameComponent, current: true },
+//   { name: "High Scores", component: HighScoresComponent, current: false },
+//   { name: "How To Play", component: HowToPlayComponent, current: false },
+//   { name: "Profile", component: ProfileComponent, current: false },
+// ];
+
+// function classNames(...classes) {
+//   return classes.filter(Boolean).join(" ");
+// }
+
+// export default function Navigation() {
+//   const [activeSection, setActiveSection] = useState("About Me");
+
+//   const handleNavClick = (section) => {
+//     setActiveSection(section);
+//   };
+
+//   const renderSection = () => {
+//     switch (activeSection) {
+//       case "Game":
+//         return <GameComponent />;
+//       case "High Scores":
+//         return <HighScoresComponent />;
+//       case "How to Play":
+//         return <HowToPlayComponent />;
+//       case "Profile":
+//         return <ProfileComponent />;
+//       default:
+//         return <GameComponent />;
+//     }
+//   };
+
+import React, { useState } from "react";
+import { Disclosure } from "@headlessui/react";
+import GameComponent from "./GameComponent.js";
+import HighScoresComponent from "./HighScoresComponent.js";
+import HowToPlayComponent from "./HowToPlayComponent.js";
+import ProfileComponent from "./ProfileComponent.js";
+
+const navigation = [
+  { name: "Game", component: GameComponent, current: true },
+  { name: "High Scores", component: HighScoresComponent, current: false },
+  { name: "How To Play", component: HowToPlayComponent, current: false },
+  { name: "Profile", component: ProfileComponent, current: false },
+];
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -192,7 +246,7 @@ export default function Navigation() {
         return <GameComponent />;
       case "High Scores":
         return <HighScoresComponent />;
-      case "How to Play":
+      case "How To Play":
         return <HowToPlayComponent />;
       case "Profile":
         return <ProfileComponent />;
