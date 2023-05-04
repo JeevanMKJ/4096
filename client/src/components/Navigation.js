@@ -251,8 +251,8 @@ export default function Navigation() {
   return (
     <>
       <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
-        <nav className="flex flex-1 flex-col">
-          <ul className="flex flex-1 flex-col gap-y-7">
+        <nav className="columns-4 ml-5 mt-2">
+          <ul className="gap-y-7 gap-x-5">
             <li>
               <ul className="-mx-2 space-y-1">
                 {navigation.map((item) => (
