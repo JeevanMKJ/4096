@@ -11,7 +11,15 @@ type User {
 
 
   type Scores {
-    points: Int
+    _id: ID!
+    points: Int!
+    player: String
+  }
+
+  type Auth {
+    token: ID!
+    user: User
+
   }
 
   type Auth {
@@ -29,7 +37,7 @@ type User {
     users: [User]
 
     user(userId: ID!): User
-    scores(username: String): [Scores]
+    scores: [Scores]
     me: User
 
      }
@@ -38,10 +46,8 @@ type User {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     removeUser(userId: ID!): User
-
-    saveScore(userID: ID! points: Int!): User
-    removeScore(userID: ID! points: Int!): User
-
+    saveScore(points: Int!): Scores
+    removeScore(userID: ID! points: Int!): Scores
   }
 `;
 

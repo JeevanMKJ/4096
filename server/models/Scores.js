@@ -7,10 +7,8 @@ const scoreSchema = new Schema({
     unique: true,
   },
   player: {
-    type: String,
-    required: true,
-    trim: true,
-  }
+type: String
+}
 });
 
 const Scores = model('Scores', scoreSchema);
