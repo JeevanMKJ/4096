@@ -6,16 +6,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        mauve: "#D3C4BE",
-        tan: "#EBCFC4",
+        'mauve': "#D3C4BE",
+        'tan': "#EBCFC4",
+      },
+      aspectRatio: {
+        '1/1': '1 / 1',
       },
     },
-  },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/aspect-ratio"),
-  ],
-  variants: {
-    extend: {},
-  },
+    plugins: [
+      require("@tailwindcss/forms"),
+      require("@tailwindcss/aspect-ratio"),
+    ],
+    variants: {
+      extend: {},
+    },
+  }
 };
