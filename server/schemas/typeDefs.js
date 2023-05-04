@@ -12,7 +12,7 @@ type User {
 
   type Scores {
     _id: ID!
-    points: Int!
+    points: Int
     player: String
   }
 
@@ -29,8 +29,7 @@ type User {
 
   type Query {
     users: [User]
-
-    user(userId: ID!): User
+    user(username: String!): User
     scores: [Scores]
     me: User
      }
