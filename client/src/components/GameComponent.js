@@ -79,6 +79,30 @@ const merge = (board) => {
   return board;
 };
 
+export const moveLeft = (board) => {
+  const newGame1 = combine(board);
+  const newGame2 = merge(newGame1);
+  return combine(newGame2);
+};
+
+const flip = (board) => {
+  const flipBoard = getEmptyBoard();
+
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      flipBoard[i][j] = board[i][board[i].length - 1 - j];
+    }
+  }
+  return flipBoard;
+};
+
+export const moveRight = (board) => {
+  const flipBoard = flip(board);
+  const newGame = moveLeft(flipBoard);
+  return flip(newGame);
+};
+
+
 
 
 
