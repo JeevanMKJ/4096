@@ -87,6 +87,7 @@
 //         </div>
 //       </main>
 //     </>
+<<<<<<< HEAD
 //   );
 // }
 
@@ -179,11 +180,17 @@
 //         </div>
 //       </main>
 //     </>
+=======
+>>>>>>> 1904ba481641a46d2d679126cf152c7f8ad8a3ef
 //   );
 // }
 
 import React, { useState } from "react";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import { Disclosure } from "@headlessui/react";
+>>>>>>> 1904ba481641a46d2d679126cf152c7f8ad8a3ef
 =======
 import { Disclosure } from "@headlessui/react";
 >>>>>>> 1904ba481641a46d2d679126cf152c7f8ad8a3ef
@@ -346,6 +353,7 @@ export default function Navigation() {
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navigation.map((item) => (
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <li key={item.name}>
                     <button
                       onClick={() => handleNavClick(item.name)}
@@ -360,6 +368,8 @@ export default function Navigation() {
                     </button>
                   </li>
 =======
+=======
+>>>>>>> 1904ba481641a46d2d679126cf152c7f8ad8a3ef
                   <a
                     key={item.name}
                     onClick={() => handleNavClick(item.name)}
@@ -375,6 +385,9 @@ export default function Navigation() {
                   >
                     {item.name}
                   </a>
+<<<<<<< HEAD
+>>>>>>> 1904ba481641a46d2d679126cf152c7f8ad8a3ef
+=======
 >>>>>>> 1904ba481641a46d2d679126cf152c7f8ad8a3ef
                 ))}
               </div>

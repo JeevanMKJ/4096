@@ -25,6 +25,12 @@ type User {
   type Auth {
     token: ID!
     user: User
+
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
 
   type Query {
@@ -33,6 +39,7 @@ type User {
     user(userId: ID!): User
     scores: [Scores]
     me: User
+
      }
 
   type Mutation {
