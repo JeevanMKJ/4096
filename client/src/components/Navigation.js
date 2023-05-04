@@ -1,6 +1,6 @@
-//Test Note
 import React, { useState } from "react";
 import { Disclosure } from "@headlessui/react";
+
 import GameComponent from "./GameComponent.js";
 import HighScoresComponent from "./HighScoresComponent.js";
 import HowToPlayComponent from "./HowToPlayComponent.js";
@@ -88,6 +88,21 @@ export default function Navigation() {
             <Disclosure.Panel className="sm:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navigation.map((item) => (
+
+                  <li key={item.name}>
+                    <button
+                      onClick={() => handleNavClick(item.name)}
+                      className={classNames(
+                        item.name === activeSection
+                          ? "bg-gray-800 text-white"
+                          : "text-gray-400 hover:text-white hover:bg-gray-800",
+                        "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                      )}
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+
                   <a
                     key={item.name}
                     onClick={() => handleNavClick(item.name)}
@@ -103,6 +118,7 @@ export default function Navigation() {
                   >
                     {item.name}
                   </a>
+
                 ))}
               </div>
             </Disclosure.Panel>
