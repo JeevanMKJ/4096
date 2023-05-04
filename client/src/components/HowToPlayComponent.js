@@ -2,7 +2,7 @@ const features = [
   {
     name: "Game objective?",
     description:
-      "Waist as much … I mean play for as long as you can and be the last man standing with the highest score. Relish in the feeling of accomplishment when you hit the TOP 10.",
+      "Waste as much … I mean play for as long as you can and be the last man standing with the highest score. Relish in the feeling of accomplishment when you hit the TOP 10.",
   },
   {
     name: "How to move?",
