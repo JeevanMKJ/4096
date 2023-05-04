@@ -5,7 +5,9 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@apollo/client": "^3.5.8",
-    "@heroicons/react": "^2.0.17",
+    "@headlessui/react": "^1.7.14",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.3",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
@@ -13,6 +15,7 @@
     "graphql": "^15.4.0",
     "postcss": "^8.4.23",
     "react": "^17.0.1",
+    "react-css-grid": "^2.0.0-0",
     "react-dom": "^17.0.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.1",

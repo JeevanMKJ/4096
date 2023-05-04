@@ -1,27 +1,93 @@
-const { undefined, undefined2 } = require("../models");
+const { User, Scores } = require("../models");
+
+const { signToken } = require('../utils/auth.js')
+const { AuthenticationError } = require('apollo-server-express');
+
 
 const resolvers = {
   Query: {
-    tech: async () => {
-      return undefined.find({});
+    users: async () => {
+      return User.find().populate('scores');
     },
-    matchups: async (parent, { _id }) => {
-      const params = _id ? { _id } : {};
-      return undefined2.find(params);
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('scores');
+
     },
+    scores: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Scores.find(params).sort({ createdAt: -1 });
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
   },
+  
   Mutation: {
-    createMatchup: async (parent, args) => {
-      const matchup = await undefined2.create(args);
-      return matchup;
+    //POST scores
+
+    saveScore: async (parent, { points }, context) => {
+      if (context.user) {
+        const score = await Scores.create({
+          points,
+          player: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { scores: score._id } }
+        );
+
+        return score;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
-    createVote: async (parent, { _id, techNum }) => {
-      const vote = await undefined2.findOneAndUpdate(
-        { _id },
-        { $inc: { [`tech${techNum}_votes`]: 1 } },
-        { new: true }
-      );
-      return vote;
+    //POST users
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({username, email, password});
+      const token = signToken(user);
+      return { user, token };
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('No user with this email found!');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect password!');
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+    //UPDATE high scores------????????????????
+
+    removeScore: async (parent, { points }, context) => {
+      if (context.user) {
+        const score = await Scores.findOneAndDelete({
+          points,
+          
+
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { scores: score.points } }
+        );
+
+        return score;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+
+    },
+    //DELETE user
+    removeUser: async (parent, { userId }) => {
+      return User.findOneAndDelete({ _id: userId });
     },
   },
 };
