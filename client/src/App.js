@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Navigation from "./components/Navigation.js";
 import FooterComponent from "./components/FooterComponent.js";
+import FooterComponent from "./components/FooterComponent.js";
 
 // import SignUpLoginInPage from "./pages/SignUpLogInPage";
 // import GameComponent from "./components/GameComponent.js";
@@ -20,7 +21,9 @@ function App() {
       <Navigation />
       {/* <SignUpLoginInPage /> */}
       {/* <Grid /> */}
-      <FooterComponent />/
+
+      <FooterComponent />
+
     </ApolloProvider>
   );
 }
