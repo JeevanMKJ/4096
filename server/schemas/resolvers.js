@@ -29,11 +29,12 @@ const resolvers = {
       if (context.user) {
         const score = await Scores.create({
           points,
+          player: context.user.username,
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { scores: score.points } }
+          { $addToSet: { scores: score._id } }
         );
 
         return score;
@@ -72,12 +73,13 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { scores: scores.points } }
+          { $pull: { scores: score.points } }
         );
 
         return score;
       }
       throw new AuthenticationError('You need to be logged in!');
+
     },
     //DELETE user
     removeUser: async (parent, { userId }) => {

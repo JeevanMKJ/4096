@@ -6,6 +6,9 @@ const scoreSchema = new Schema({
     required: true,
     unique: true,
   },
+  player: {
+    type: String
+  }
 });
 
 const Scores = model('Scores', scoreSchema);
