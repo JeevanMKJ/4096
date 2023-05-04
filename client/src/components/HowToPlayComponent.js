@@ -17,7 +17,7 @@ export default function Example() {
         <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 sm:pb-32 lg:px-8 lg:pt-32">
           <div className="text-center">
             <h2 id="features-heading" className="font-medium text-gray-500">
-              How to play 2048
+              How to play 4096?
             </h2>
             <p className="mt-4 text-gray-500">
               This game is not for the faint of heart. Read and learn.
