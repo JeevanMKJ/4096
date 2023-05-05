@@ -4,11 +4,10 @@ const scoreSchema = new Schema({
   points: {
     type: Number,
     required: true,
-    unique: true,
   },
   player: {
-type: String
-}
+    type: String
+  }
 });
 
 const Scores = model('Scores', scoreSchema);
