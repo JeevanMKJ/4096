@@ -40,7 +40,7 @@ export default function Navigation() {
 
   return (
     <>
-      <Disclosure as="nav" className="bg-gray-800 py-2">
+      <Disclosure as="nav" className="bg-gray-800 py-2 font-serif bg-steel-blue">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,8 +62,8 @@ export default function Navigation() {
                         className={classNames(
                           item.name === activeSection
                             ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-4 py-3 text-base font-medium cursor-pointer focus:outline-none"
+                            : "text-gray-300 hover:bg-sweater hover:text-slate",
+                          "rounded-full px-4 py-3 text-base font-medium cursor-pointer focus:bg-sweater focus:text-slate"
                         )}
                         aria-current={
                           item.name === activeSection ? "page" : undefined
