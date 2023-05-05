@@ -33,7 +33,7 @@ type User {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     removeUser(userId: ID!): User
-    saveScore(points: Int, username: String): Scores
+    saveScore(points: Int, player: String!): Scores
     removeScore(scoresID: ID!): Scores
   }
 `;

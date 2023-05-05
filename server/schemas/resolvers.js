@@ -28,15 +28,15 @@ const resolvers = {
   Mutation: {
     //POST scores
 
-    saveScore: async (parent, { points }, context) => {
+    saveScore: async (parent, { points, player }, context) => {
       if (context.user) {
         const score = await Scores.create({
           points,
-          player: context.user.username,
+          player
         });
 
         await User.findOneAndUpdate(
-          { _id: context.user._id },
+          { username: player },
           { $addToSet: { scores: score._id } }
         );
 
@@ -68,10 +68,10 @@ const resolvers = {
     },
     //UPDATE high scores------????????????????
 
-    removeScore: async (parent, { points }, context) => {
+    removeScore: async (parent, { scoreId }, context) => {
       if (context.user) {
         const score = await Scores.findOneAndDelete({
-          points,
+          _id: scoreId,
           player: context.user.username,
           });
 
