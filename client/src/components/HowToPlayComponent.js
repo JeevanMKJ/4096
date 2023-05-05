@@ -19,7 +19,7 @@ const features = [
   {
     name: "Game objective?",
     description:
-      "Waist as much … I mean play for as long as you can and be the last man standing with the highest score. Relish in the feeling of accomplishment when you hit the TOP 10.",
+      "Waste as much … I mean play for as long as you can and be the last man standing with the highest score. Relish in the feeling of accomplishment when you hit the TOP 10.",
   },
   {
     name: "How to move?",
@@ -29,7 +29,7 @@ const features = [
 
 export default function Example() {
   return (
-    <div className="bg-white">
+    <div className="bg-white font-serif">
       <section aria-labelledby="features-heading" className="relative">
         <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 sm:pb-32 lg:px-8 lg:pt-32">
           <div className="text-center">
