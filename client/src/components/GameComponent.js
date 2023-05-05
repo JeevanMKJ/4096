@@ -102,6 +102,29 @@ export const moveRight = (board) => {
   return flip(newGame);
 };
 
+const turnLeft = (board) => {
+  const flipBoard = getEmptyBoard();
+
+  for (let i =0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++){
+      flipBoard[i][j] = board[j][board[i].length - 1 - i];
+    }
+  }
+  return flipBoard;
+};
+
+const turnRight = (board) => {
+  const flipBoard = getEmptyBoard();
+
+  for (let i =0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      flipBoard[i][j] = board[board[i].length - 1 - j][i];
+    }
+  }
+  return flipBoard;
+}
+
+
 
 
 
