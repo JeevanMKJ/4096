@@ -72,13 +72,12 @@ const resolvers = {
       if (context.user) {
         const score = await Scores.findOneAndDelete({
           points,
-          
-
-        });
+          player: context.user.username,
+          });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { scores: score.points } }
+          { $pull: { scores: score._id } }
         );
 
         return score;

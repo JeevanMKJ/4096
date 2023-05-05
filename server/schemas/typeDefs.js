@@ -11,7 +11,7 @@ type User {
 
 
   type Scores {
-    _id: ID!
+    _id: ID
     points: Int
     player: String
   }
@@ -20,11 +20,6 @@ type User {
     token: ID!
     user: User
 
-  }
-
-  type Auth {
-    token: ID!
-    user: User
   }
 
   type Query {
@@ -38,8 +33,8 @@ type User {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     removeUser(userId: ID!): User
-    saveScore(points: Int!): Scores
-    removeScore(userID: ID! points: Int!): Scores
+    saveScore(points: Int, username: String): Scores
+    removeScore(scoresID: ID!): Scores
   }
 `;
 
