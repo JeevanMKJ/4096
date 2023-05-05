@@ -17,7 +17,7 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={client} className='bg-sweater'>
       <Navigation />
       {/* <SignUpLoginInPage /> */}
       {/* <Grid /> */}
