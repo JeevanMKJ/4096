@@ -68,23 +68,9 @@ const resolvers = {
     },
     //UPDATE high scores------????????????????
 
-    removeScore: async (parent, { scoreId }, context) => {
-      if (context.user) {
-        const score = await Scores.findOneAndDelete({
-          _id: scoreId,
-          player: context.user.username,
-          });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { scores: score._id } }
-        );
-
-        return score;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-
-    },
+    removeScore: async (parent, { scoreId }) => {
+   return Scores.findOneAndDelete({ _id: scoreId });
+      },
     //DELETE user
     removeUser: async (parent, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
