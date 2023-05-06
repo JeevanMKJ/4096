@@ -13,7 +13,7 @@ const people = [
 
 export default function Example() {
     return (
-        <div className="bg-white py-24 sm:py-32 font-serif text-emerald">
+        <div className="bg-white py-24 sm:py-32 font-serif">
             <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
                 <div className="max-w-2xl">
                     <div className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

@@ -12,6 +12,7 @@ module.exports = {
         'sweater': '#EEE6DE',
         'emerald': '#37514D',
         'clay': '#DD8E75',
+        'cran': 'B6594C',
       },
       aspectRatio: {
         '1/1': '1 / 1',
