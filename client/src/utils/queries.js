@@ -6,7 +6,6 @@ query me {
       _id
       username
       email
-      password
       scores {
         points
       }
@@ -17,6 +16,7 @@ query me {
   export const QUERY_SCORES = gql`
   query scores {
     scores {
+      _id
       player
       points
     }
@@ -30,6 +30,8 @@ query me {
       scores {
         points
       }
+      _id
+      email
     }
   }
   `;
