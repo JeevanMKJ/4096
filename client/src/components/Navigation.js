@@ -4,12 +4,14 @@ import GameComponent from "./GameComponent.js";
 import HighScoresComponent from "./HighScoresComponent.js";
 import HowToPlayComponent from "./HowToPlayComponent.js";
 import ProfileComponent from "./ProfileComponent.js";
+import SignUpLoginInPage from "../pages/SignUpLogInPage.js";
 
 const navigation = [
   { name: "Game", component: GameComponent, current: true },
   { name: "High Scores", component: HighScoresComponent, current: false },
   { name: "How To Play", component: HowToPlayComponent, current: false },
   { name: "Profile", component: ProfileComponent, current: false },
+  { name: "Signup/Login", component: SignUpLoginInPage, current: false},
 ];
 
 function classNames(...classes) {
@@ -33,8 +35,10 @@ export default function Navigation() {
         return <HowToPlayComponent />;
       case "Profile":
         return <ProfileComponent />;
+      case "Signup/Login":
+        return <SignUpLoginInPage />;
       default:
-        return <GameComponent />;
+          return <GameComponent />;
     }
   };
 
@@ -47,7 +51,7 @@ export default function Navigation() {
               <div className="flex flex-1 items-center justify-between">
                 <div className="flex flex-shrink-0 items-center">
                   <h1
-                    className="text-2xl text-white mr-12 cursor-pointer"
+                    className="text-5xl text-white mr-12 cursor-pointer"
                     onClick={() => handleNavClick("About Me")}
                   >
                     4096
@@ -76,7 +80,7 @@ export default function Navigation() {
                 </div>
                 <div className="-mr-2 flex sm:hidden">
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-full text-white hover:text-white hover:bg-sweater focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span className="sr-only">Open main menu</span>
                     {open ? "Close" : "Menu"}
                   </Disclosure.Button>
@@ -92,9 +96,9 @@ export default function Navigation() {
                     onClick={() => handleNavClick(item.name)}
                     className={classNames(
                       item.name === activeSection
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "block rounded-md px-3 py-2 text-base font-medium focus:outline-none"
+                        ? "bg-sweater text-white"
+                        : "text-white hover:bg-sweater hover:text-slate-500 hover:rounded-full",
+                      "block rounded-full px-3 py-2 text-base font-medium focus:outline-sweater focus:bg-sweater"
                     )}
                     aria-current={
                       item.name === activeSection ? "page" : undefined
