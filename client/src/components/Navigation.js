@@ -1,123 +1,101 @@
-import React, { useState } from "react";
-import { Disclosure } from "@headlessui/react";
-import Auth from '../utils/auth';
-import GameComponent from "./GameComponent.js";
-import HighScoresComponent from "./HighScoresComponent.js";
-import HowToPlayComponent from "./HowToPlayComponent.js";
-import ProfileComponent from "./ProfileComponent.js";
-import Login from "../pages/Login.js";
-import Signup from "../pages/Signup.js";
+import React from "react";
+import Auth from '../utils/auth'
 
-const navigation = [
-  { name: "Game", component: GameComponent, current: true },
-  { name: "High Scores", component: HighScoresComponent, current: false },
-  { name: "How To Play", component: HowToPlayComponent, current: false },
-  { name: "Profile", component: ProfileComponent, current: false },
-  { name: "Login", component: Login, current: false},
-  { name: "Signup", component: Signup, current: false},
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-export default function Navigation() {
-  const [activeSection, setActiveSection] = useState("About Me");
-
-  const handleNavClick = (section) => {
-    setActiveSection(section);
-  };
-
-  const renderSection = () => {
-    switch (activeSection) {
-      case "Game":
-        return <GameComponent />;
-      case "High Scores":
-        return <HighScoresComponent />;
-      case "How To Play":
-        return <HowToPlayComponent />;
-      case "Profile":
-        return <ProfileComponent />;
-      case "Login":
-        return <Login />;
-      case "Signup":
-        return <Signup />
-      default:
-          return <GameComponent />;
-    }
-  };
-
+export default function Navbar({ fixed }) {
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  }
   return (
     <>
-      <Disclosure as="nav" className="bg-gray-800 py-2 font-serif bg-garden">
-        {({ open }) => (
-          <>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex flex-1 items-center justify-between">
-                <div className="flex flex-shrink-0 items-center">
-                  <h1
-                    className="text-5xl text-white mr-12 cursor-pointer"
-                    onClick={() => handleNavClick("About Me")}
-                  >
-                    4096
-                  </h1>
-                </div>
-                <div className="hidden sm:ml-auto sm:block">
-                  <div className="flex space-x-8">
-                    {navigation.map((item) => (
-                      <button
-                        key={item.name}
-                        onClick={() => handleNavClick(item.name)}
-                        className={classNames(
-                          item.name === activeSection
-                            ? "bg-gray-900 text-sage"
-                            : "text-white text-bold text-4x1 hover:bg-sweater hover:text-slate",
-                          "rounded-full px-4 py-3 text-base font-medium cursor-pointer focus:bg-sweater focus:text-slate"
-                        )}
-                        aria-current={
-                          item.name === activeSection ? "page" : undefined
-                        }
-                      >
-                        {item.name}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div className="-mr-2 flex sm:hidden">
-                  {/* Mobile menu button */}
-                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-full text-white hover:text-white hover:bg-sweater focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    <span className="sr-only">Open main menu</span>
-                    {open ? "Close" : "Menu"}
-                  </Disclosure.Button>
-                </div>
-              </div>
-            </div>
-
-            <Disclosure.Panel className="sm:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                {navigation.map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => handleNavClick(item.name)}
-                    className={classNames(
-                      item.name === activeSection
-                        ? "bg-sweater text-white"
-                        : "text-white hover:bg-sweater hover:text-slate-500 hover:rounded-full",
-                      "block rounded-full px-3 py-2 text-base font-medium focus:outline-sweater focus:bg-sweater"
-                    )}
-                    aria-current={
-                      item.name === activeSection ? "page" : undefined
-                    }
-                  >
-                    {item.name}
-                  </button>
-                ))}
-              </div>
-            </Disclosure.Panel>
-          </>
-        )}
-      </Disclosure>
-      <main>{renderSection()}</main>
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-teal-500 mb-3">
+        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+            <a
+              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+              href="/"
+            >
+              4096
+            </a>
+            <button
+              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              type="button"
+              onClick={() => setNavbarOpen(!navbarOpen)}
+            >
+              <i className="fas fa-bars"></i>
+            </button>
+          </div>
+          <div
+            className={
+              "lg:flex flex-grow items-center" +
+              (navbarOpen ? " flex" : " hidden")
+            }
+            id="example-navbar-danger"
+          >
+            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+              <li className="nav-item">
+                <a
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  href="highscores"
+                >
+                  <span className="ml-2">High Scores</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  href="/howtoplay"
+                >
+                <span className="ml-2">How to Play</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  href="/me"
+                >
+                  <span className="ml-2">Profile</span>
+                </a>
+              </li>
+              {Auth.loggedIn() ? (
+                <>
+                <li className="nav-item">
+               <button
+                 className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                 onClick={logout}
+               >
+                 <span className="ml-2">Logout</span>
+               </button>
+             </li>
+               </>
+             
+              ) : (
+                <>
+                <li className="nav-item">
+                <a
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  href="/login"
+                >
+                  <span className="ml-2">Login</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  href="/signup"
+                >
+                  <span className="ml-2">Sign up</span>
+                </a>
+              </li>
+              
+              </>
+               )} 
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
     </>
   );
 }
