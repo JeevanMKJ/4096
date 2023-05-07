@@ -45,7 +45,7 @@ const Login = (props) => {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 font-serif">
         <div className="sm:mx-auto sm:w-full sm:max-w-md text-center text-bold">
-          <h1 className="mx-auto h-10 w-auto">Login to your account</h1>
+          <h1 className="mx-auto h-10 w-auto text-gray-600">Login to your account</h1>
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"></h2>
         </div>
 
@@ -103,11 +103,11 @@ const Login = (props) => {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 mt-1 rounded border-gray-400 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label
                     htmlFor="remember-me"
-                    className="ml-3 block text-sm leading-6 text-gray-900"
+                    className="ml-1 block text-sm leading-6 text-gray-600"
                   >
                     Remember me
                   </label>
@@ -126,16 +126,18 @@ const Login = (props) => {
               <div>
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-garden px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sage focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+                  className="flex w-full justify-center rounded-md bg-burnt-orange px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
                 >
                   Sign in
                 </button>
               </div>
             </form>
+            <div className='mt-3 text-gray-600'>
             <span>
               Don't have an account?
-              <Link to="/signup">Sign up</Link>
+              <Link to="/signup" className='text-garden hover:text-sage'> Sign up</Link>
             </span>
+            </div>
             {error && (
               <div className="text-white">
                 {error.message}
