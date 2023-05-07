@@ -44,7 +44,7 @@ export default function Navigation() {
 
   return (
     <>
-      <Disclosure as="nav" className="bg-gray-800 py-2 font-serif bg-steel-blue">
+      <Disclosure as="nav" className="bg-gray-800 py-2 font-serif bg-garden">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,8 +65,8 @@ export default function Navigation() {
                         onClick={() => handleNavClick(item.name)}
                         className={classNames(
                           item.name === activeSection
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-sweater hover:text-slate",
+                            ? "bg-gray-900 text-sage"
+                            : "text-white text-bold text-4x1 hover:bg-sweater hover:text-slate",
                           "rounded-full px-4 py-3 text-base font-medium cursor-pointer focus:bg-sweater focus:text-slate"
                         )}
                         aria-current={
