@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { Disclosure } from "@headlessui/react";
+import Auth from '../utils/auth';
 import GameComponent from "./GameComponent.js";
 import HighScoresComponent from "./HighScoresComponent.js";
 import HowToPlayComponent from "./HowToPlayComponent.js";
 import ProfileComponent from "./ProfileComponent.js";
-import SignUpLoginInPage from "../pages/SignUpLogInPage.js";
+import Login from "../pages/Login.js";
+import Signup from "../pages/Signup.js";
 
 const navigation = [
   { name: "Game", component: GameComponent, current: true },
   { name: "High Scores", component: HighScoresComponent, current: false },
   { name: "How To Play", component: HowToPlayComponent, current: false },
   { name: "Profile", component: ProfileComponent, current: false },
-  { name: "Signup/Login", component: SignUpLoginInPage, current: false},
+  { name: "Login", component: Login, current: false},
+  { name: "Signup", component: Signup, current: false},
 ];
 
 function classNames(...classes) {
@@ -35,8 +38,10 @@ export default function Navigation() {
         return <HowToPlayComponent />;
       case "Profile":
         return <ProfileComponent />;
-      case "Signup/Login":
-        return <SignUpLoginInPage />;
+      case "Login":
+        return <Login />;
+      case "Signup":
+        return <Signup />
       default:
           return <GameComponent />;
     }
