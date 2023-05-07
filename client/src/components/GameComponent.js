@@ -136,9 +136,40 @@ export const moveDown = (board) => {
   return turnLeft(newGame);
 };
 // value used to check if the score of a square has reached 4096
-export const gameFinished = (board) => {
+export const gameWon = (board) => {
   return holdsValue(board, 4096);
 };
+
+const hasDiffValue = (board, updatedBoard) => {
+  for (let i = 0; i < board.length; i++) {
+    for(let j = 0; j < board[i].length; j++) {
+      if (board[i][j] !== updatedBoard[i][j]) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
+export const gameOver = (board) => {
+  if (hasDiffValue(board, moveLeft(board))) {
+    return false;
+  }
+  if (hasDiffValue(board, moveRight(board))) {
+    return false;
+  }
+  if (hasDiffValue(board, moveUp(board))) {
+    return false;
+  }
+  if (hasDiffValue(board, moveDown(board))) {
+    return false;
+  }
+  return true;
+};
+
+
+
+
 
 
 
