@@ -12,7 +12,11 @@ module.exports = {
         'sweater': '#EEE6DE',
         'emerald': '#37514D',
         'clay': '#DD8E75',
-        'cran': 'B6594C',
+        'cran': '#B6594C',
+        'sage': '#82713D',
+        'cream': '#EAC8AB',
+        'burnt-orange': '#CD7D44',
+        'garden': '#C2C3A8'
       },
       aspectRatio: {
         '1/1': '1 / 1',

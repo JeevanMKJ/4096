@@ -69,7 +69,7 @@ export default function SignUpLoginInPage() {
                 <div className="text-sm leading-6">
                   <a
                     href="#"
-                    className="font-semibold text-steel-blue hover:text-blue-300"
+                    className="font-semibold text-garden hover:text-sage"
                   >
                     Forgot password?
                   </a>
@@ -79,7 +79,7 @@ export default function SignUpLoginInPage() {
               <div>
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-steel-blue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+                  className="flex w-full justify-center rounded-md bg-garden px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sage focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
                 >
                   Sign in
                 </button>
@@ -105,7 +105,7 @@ export default function SignUpLoginInPage() {
                 <div>
                   <a
                     href="#"
-                    className="flex w-full items-center justify-center gap-3 rounded-md bg-clay px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0]"
+                    className="flex w-full items-center justify-center gap-3 rounded-md bg-cream px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0]"
                   >
                     <svg
                       className="h-5 w-5"
@@ -124,7 +124,7 @@ export default function SignUpLoginInPage() {
                 <div>
                   <a
                     href="#"
-                    className="flex w-full items-center justify-center gap-3 rounded-md bg-clay px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]"
+                    className="flex w-full items-center justify-center gap-3 rounded-md bg-cream px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]"
                   >
                     <svg
                       className="h-5 w-5"
