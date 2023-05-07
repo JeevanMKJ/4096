@@ -42,7 +42,7 @@ const Signup = () => {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 font-serif">
         <div className="sm:mx-auto sm:w-full sm:max-w-md text-center text-bold">
-          <h1 className="mx-auto h-10 w-auto">Login to your account</h1>
+          <h1 className="mx-auto h-10 w-auto">Sign up for an account</h1>
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"></h2>
         </div>
 
@@ -62,7 +62,7 @@ const Signup = () => {
                     id="username"
                     value={formState.username}
                     name="username"
-                    type="username"
+                    type="text"
                     autoComplete="username"
                     placeholder="  username"
                     required
@@ -103,14 +103,14 @@ const Signup = () => {
                 </label>
                 <div className="mt-2">
                   <input
-                    id="password"
+                    // id="password"
                     name="password"
                     type="password"
                     value={formState.password}
                     placeholder="  password"
                     autoComplete="current-password"
                     required
-                    onchange={handleChange}
+                    onChange={handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>

@@ -33,7 +33,7 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
 `
 
 export const SAVE_SCORE = gql `
-mutation saveScore(player: $player, points: $points)
+mutation saveScore($player: player, $points: points) {
 saveScore(player: $player, points: $points) {
   _id
   player
@@ -43,7 +43,7 @@ saveScore(player: $player, points: $points) {
 `
 
 export const REMOVE_USER = gql `
-mutation removeUser(userId: $userId)
+mutation removeUser($userId: userId) {
 removeUser(userId: $userId) {
   username
 }
