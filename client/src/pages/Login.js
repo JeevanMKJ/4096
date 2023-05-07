@@ -116,7 +116,7 @@ const Login = (props) => {
                 <div className="text-sm leading-6">
                   <a
                     href="#"
-                    className="font-semibold text-steel-blue hover:text-blue-300"
+                    className="font-semibold text-garden hover:text-sage"
                   >
                     Forgot password?
                   </a>
@@ -126,7 +126,7 @@ const Login = (props) => {
               <div>
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-steel-blue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+                  className="flex w-full justify-center rounded-md bg-garden px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sage focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
                 >
                   Sign in
                 </button>
