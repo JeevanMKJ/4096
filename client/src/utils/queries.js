@@ -37,8 +37,9 @@ query me {
   `;
 
   export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+  query user($userId: String!) {
+    user(userId: $userId) {
+      _id
       username
       scores {
         points
