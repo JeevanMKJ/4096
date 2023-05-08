@@ -24,7 +24,7 @@ type User {
 
   type Query {
     users: [User]
-    user(username: String!): User
+    user(userId: String!): User
     scores: [Scores]
     me: User
      }
