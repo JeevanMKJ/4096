@@ -1,9 +1,27 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_SCORES } from '../utils/queries'
 
-const HighScores = ({ scores }) => {
- 
+const HighScores = () => {
+  const { data } = useQuery(QUERY_SCORES)
+console.log(data.scores[0])
+
   return (
- "High scores here"
+    <div>
+      <div>
+        {data.scores &&
+          data.scores.map((score) => (
+            // <div key={score}>
+            //   <div>
+            //     <h4>
+            //       {score.scores} <br />
+            //     </h4>
+            //   </div>
+            // </div>
+            <p>{score.points}</p>
+          ))}
+      </div>
+    </div>
   );
 };
 
