@@ -46,7 +46,7 @@ function App() {
               />
                <Route 
                 path="/highscores" 
-                element={<HighScores  />}
+                element={<HighScores />}
               />
                 <Route 
                 path="/howtoplay" 
