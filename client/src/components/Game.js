@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import cloneDeep from "lodash.clonedeep";
-import { useEvent, getColors } from "./util";
+import { useEvent, getColors } from "./Tile";
 import Swipe from "react-easy-swipe";
 
 function App() {
