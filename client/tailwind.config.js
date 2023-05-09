@@ -16,7 +16,8 @@ module.exports = {
         'sage': '#82713D',
         'cream': '#EAC8AB',
         'burnt-orange': '#CD7D44',
-        'garden': '#C2C3A8'
+        'garden': '#C2C3A8',
+        'mustard': '#D3AD6B'
       },
       aspectRatio: {
         '1/1': '1 / 1',
