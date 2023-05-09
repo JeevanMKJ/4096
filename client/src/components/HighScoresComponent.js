@@ -25,9 +25,9 @@ const HighScores = () => {
         {
           sortedScores.map((score) => (
             <>
-              <div className="font-serif columns-2 text-gray-600 text-md">
+              <div className="font-serif border-t pt-2 columns-2 text-gray-600 text-md">
                 <p>{score.player}</p>
-                <p>{score.points}</p>
+                <p className="border-l pl-2">{score.points}</p>
               </div>
             </>
           ))}
