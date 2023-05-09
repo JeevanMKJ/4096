@@ -4,18 +4,22 @@ import { QUERY_SCORES } from '../utils/queries'
 
 const HighScores = () => {
   const { loading, data } = useQuery(QUERY_SCORES)
-console.log(data?.scores)
-  if (loading) {
+// console.log(data?.scores)
+
+  
+if (loading) {
       return <div>Loading...</div>;
     }
-    
+  const sortedScores = [...data.scores].sort((a,b) => b.points - a.points);
+// console.log(sortedScores)  
+
   return (
   
     <div>
       <div>
-        {data.scores &&
-          data.scores.map((score) => (
-            <p>{score.points}</p>
+        {
+          sortedScores.map((score) => (
+            <p>{score.points}{score.player}</p>
           ))}
       </div>
     </div>
