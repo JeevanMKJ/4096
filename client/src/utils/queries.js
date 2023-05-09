@@ -14,7 +14,7 @@ query me {
   `;
 
   export const QUERY_SCORES = gql`
-  query scores {
+  query Scores {
     scores {
       _id
       player

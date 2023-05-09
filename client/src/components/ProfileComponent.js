@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import HighScores from "./HighScoresComponent";
+// import HighScores from "./HighScoresComponent";
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 
@@ -80,20 +80,20 @@ const Profile = () => {
   
     return (
         <div>
-        <div class="px-4 sm:px-0">
-          <h3 class="text-base font-semibold leading-7 text-gray-900">{profile.username}</h3>
-          <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Profile</p>
+        <div className="px-4 sm:px-0">
+          <h3 className="text-base font-semibold leading-7 text-gray-900">{profile.username}</h3>
+          <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Profile</p>
         </div>
-        <div class="mt-6 border-t border-gray-100">
-          <dl class="divide-y divide-gray-100">
-            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-              <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{profile.email}</dd>
+        <div className="mt-6 border-t border-gray-100">
+          <dl className="divide-y divide-gray-100">
+            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6 text-gray-900">Email</dt>
+              <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{profile.email}</dd>
             </div>
             
-            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-              <dt class="text-sm font-medium leading-6 text-gray-900"> Your High Scores</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6 text-gray-900"> Your High Scores</dt>
+              <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
              {profile.scores?.length > 0}
               </dd>
             </div>
