@@ -95,7 +95,7 @@ const Profile = () => {
               <dt className="text-sm leading-6 text-gray-900 font-serif">Your High Scores</dt>
               <dd className="text-sm leading-6 text-gray-600 font-serif sm:col-span-2 sm:mt-0">
              {profile.scores.map((score) => (
-              <h1>{score.points}</h1>
+              <p>{score.points}</p>
              ))}
               </dd>
             </div>
