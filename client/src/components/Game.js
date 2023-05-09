@@ -291,6 +291,7 @@ function App() {
   };
 
   const handleKeyDown = (event) => {
+    event.preventDefault();
     if (gameOver) {
       return;
     }
