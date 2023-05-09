@@ -3,20 +3,31 @@ import cloneDeep from "lodash.clonedeep";
 import { useEvent, getColors } from "./Tile";
 import Swipe from "react-easy-swipe";
 
-function App() {
+function Game() {
+  const [score, setScore] = useState(0);
+
   const UP_ARROW = 38;
   const DOWN_ARROW = 40;
   const LEFT_ARROW = 37;
   const RIGHT_ARROW = 39;
 
+  //   const [data, setData] = useState([
+  //   [0, 0, 0, 0, 0, 0, 0, 0],
+  //   [0, 0, 0, 0, 0, 0, 0, 0],
+  //   [0, 0, 0, 0, 0, 0, 0, 0],
+  //   [0, 0, 0, 0, 0, 0, 0, 0],
+  //   [0, 0, 0, 0, 0, 0, 0, 0],
+  //   [0, 0, 0, 0, 0, 0, 0, 0],
+  //   [0, 0, 0, 0, 0, 0, 0, 0],
+  //   [0, 0, 0, 0, 0, 0, 0, 0],
+
+  // ]);
+
   const [data, setData] = useState([
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-  
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
   ]);
 
   const [gameOver, setGameOver] = useState(false);
@@ -68,6 +79,7 @@ function App() {
     console.log("swipe left");
     let oldGrid = data;
     let newArray = cloneDeep(data);
+    let newScore = score;
 
     for (let i = 0; i < 4; i++) {
       let b = newArray[i];
@@ -90,6 +102,7 @@ function App() {
         } else if (b[slow] !== 0 && b[fast] !== 0) {
           if (b[slow] === b[fast]) {
             b[slow] = b[slow] + b[fast];
+            newScore += b[slow];
             b[fast] = 0;
             fast = slow + 1;
             slow++;
@@ -107,13 +120,15 @@ function App() {
       return newArray;
     } else {
       setData(newArray);
+      setScore(newScore);
     }
   };
-
+  // Swipe Right
   const swipeRight = (dummy) => {
     console.log("swipe right");
     let oldData = data;
     let newArray = cloneDeep(data);
+    let newScore = score;
 
     for (let i = 3; i >= 0; i--) {
       let b = newArray[i];
@@ -136,6 +151,7 @@ function App() {
         } else if (b[slow] !== 0 && b[fast] !== 0) {
           if (b[slow] === b[fast]) {
             b[slow] = b[slow] + b[fast];
+            newScore += b[slow];
             b[fast] = 0;
             fast = slow - 1;
             slow--;
@@ -153,14 +169,17 @@ function App() {
       return newArray;
     } else {
       setData(newArray);
+      setScore(newScore);
     }
   };
-
+  // Swipe Down
   const swipeDown = (dummy) => {
     console.log("swipe down");
     console.log(data);
     let b = cloneDeep(data);
     let oldData = JSON.parse(JSON.stringify(data));
+    let newScore = score;
+
     for (let i = 3; i >= 0; i--) {
       let slow = b.length - 1;
       let fast = slow - 1;
@@ -181,6 +200,7 @@ function App() {
         } else if (b[slow][i] !== 0 && b[fast][i] !== 0) {
           if (b[slow][i] === b[fast][i]) {
             b[slow][i] = b[slow][i] + b[fast][i];
+            newScore += b[slow][i];
             b[fast][i] = 0;
             fast = slow - 1;
             slow--;
@@ -198,13 +218,16 @@ function App() {
       return b;
     } else {
       setData(b);
+      setScore(newScore);
     }
   };
-
+  // Swipe Up
   const swipeUp = (dummy) => {
     console.log("swipe up");
     let b = cloneDeep(data);
     let oldData = JSON.parse(JSON.stringify(data));
+    let newScore = score;
+
     for (let i = 0; i < 4; i++) {
       let slow = 0;
       let fast = 1;
@@ -225,6 +248,7 @@ function App() {
         } else if (b[slow][i] !== 0 && b[fast][i] !== 0) {
           if (b[slow][i] === b[fast][i]) {
             b[slow][i] = b[slow][i] + b[fast][i];
+            newScore += b[slow][i];
             b[fast][i] = 0;
             fast = slow + 1;
             slow++;
@@ -242,9 +266,9 @@ function App() {
       return b;
     } else {
       setData(b);
+      setScore(newScore);
     }
   };
-
   // Check Gameover
   const checkIfGameOver = () => {
     console.log("CHECKING GAME OVER");
@@ -280,13 +304,23 @@ function App() {
   // Reset
   const resetGame = () => {
     setGameOver(false);
+    setScore(0);
+    // const emptyGrid = [
+    //       [0, 0, 0, 0, 0, 0, 0, 0],
+    //       [0, 0, 0, 0, 0, 0, 0, 0],
+    //       [0, 0, 0, 0, 0, 0, 0, 0],
+    //       [0, 0, 0, 0, 0, 0, 0, 0],
+    //       [0, 0, 0, 0, 0, 0, 0, 0],
+    //       [0, 0, 0, 0, 0, 0, 0, 0],
+    //       [0, 0, 0, 0, 0, 0, 0, 0],
+    //       [0, 0, 0, 0, 0, 0, 0, 0],
+    //     ];
+
     const emptyGrid = [
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
     ];
 
     addNumber(emptyGrid);
@@ -351,14 +385,14 @@ function App() {
         <div style={{ display: "flex" }}>
           <div
             style={{
-              fontFamily: "sans-serif",
               flex: 1,
               fontWeight: "700",
-              fontSize: 60,
+              fontSize: 24,
               color: "#776e65",
+              alignSelf: "center",
             }}
           >
-            4096
+            Score: {score}
           </div>
           <div
             style={{
@@ -431,14 +465,6 @@ function App() {
             })}
           </Swipe>
         </div>
-
-        <div style={{ width: "inherit" }}>
-          <p class="game-explanation">
-            <strong class="important">How to play:</strong> Use your{" "}
-            <strong>arrow keys</strong> to move the tiles. When two tiles with
-            the same number touch, they <strong>merge into one!</strong>
-          </p>
-        </div>
       </div>
     </div>
   );
@@ -509,4 +535,4 @@ const style = {
   },
 };
 
-export default App;
+export default Game;
