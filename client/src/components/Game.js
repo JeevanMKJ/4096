@@ -21,13 +21,6 @@ function Game() {
 
   ]);
 
-  const [data, setData] = useState([
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-  ]);
-
   const [gameOver, setGameOver] = useState(false);
 
   // Initialize
