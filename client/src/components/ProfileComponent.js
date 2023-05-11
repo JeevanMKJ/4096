@@ -2,38 +2,56 @@ import React, { useState } from 'react';
 
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
 // import HighScores from "./HighScoresComponent";
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import { REMOVE_USER } from '../utils/mutations';
+
 
 import Auth from '../utils/auth';
 
-const Profile = () => {
-    const [showModal, setShowModal] = React.useState(false);
-    const { userId } = useParams();
-  
-    const { loading, data } = useQuery(
-      userId ? QUERY_USER : QUERY_ME,
-      {
-        variables: { userId: userId },
-      }
-    );
-  
-    const profile = data?.me || data?.profile || {};
+const Profile = ( users ) => {
+ const [removeUser, { error }] = useMutation(REMOVE_USER)
+  const [showModal, setShowModal] = React.useState(false);
+  const { userId } = useParams();
+
+  const handleRemoveUser = async (userId) => {
+     
+    try {
+      const { data } = await removeUser({
+        variables: { userId },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
+
+  const { loading, data } = useQuery(
+    userId ? QUERY_USER : QUERY_ME,
+    {
+      variables: { userId: userId },
+    }
+  );
+
+  const profile = data?.me || data?.profile || {};
   console.log(data)
-    // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
-    if (Auth.loggedIn() && Auth.getProfile().data._id === userId) {
-      return <Navigate to="/me" />;
-    }
-  
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-  
-    if (!profile?.username) {
-      return (
-        <>
+  // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
+  if (Auth.loggedIn() && Auth.getProfile().data._id === userId) {
+    return <Navigate to="/me" />;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!profile?.username) {
+    return (
+      <>
         <div
           className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
         >
@@ -62,12 +80,12 @@ const Profile = () => {
               </div>
               {/*footer*/}
               <div className="flex items-center justify-center p-6 border-t border-solid border-slate-200 rounded-b">
-               <a href="/login"
-               className="bg-emerald-500 text-black active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                <a href="/login"
+                  className="bg-emerald-500 text-black active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
-                  >
+                >
                   Login
-                
+
                 </a>
               </div>
             </div>
@@ -102,8 +120,9 @@ const Profile = () => {
           </dl>        
         </div>
       </div>
-    );
-  };
-  
-  export default Profile;
-  
+
+  );
+};
+
+export default Profile;
+

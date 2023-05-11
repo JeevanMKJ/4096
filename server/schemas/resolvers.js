@@ -66,14 +66,12 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    //UPDATE high scores------????????????????
-
-    removeScore: async (parent, { scoreId }) => {
-   return Scores.findOneAndDelete({ _id: scoreId });
-      },
     //DELETE user
-    removeUser: async (parent, { userId }) => {
-      return User.findOneAndDelete({ _id: userId });
+    removeUser: async (parent, { userId }, context) => {
+      if (context.user) {
+        return User.findOneAndDelete({ _id: userId });
+      }
+      throw new AuthenticationError('You need to be logged in!')
     },
   },
 };

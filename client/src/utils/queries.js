@@ -8,6 +8,7 @@ query me {
       email
       scores {
         points
+        player
       }
     }
   }
