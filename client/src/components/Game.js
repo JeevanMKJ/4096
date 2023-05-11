@@ -5,23 +5,13 @@ import Swipe from "react-easy-swipe";
 
 function Game() {
   const [score, setScore] = useState(0);
+  const WINNING_NUMBER = 4096;
+  const [gameWon, setGameWon] = useState(false);
 
   const UP_ARROW = 38;
   const DOWN_ARROW = 40;
   const LEFT_ARROW = 37;
   const RIGHT_ARROW = 39;
-
-  //   const [data, setData] = useState([
-  //   [0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0],
-
-  // ]);
 
   const [data, setData] = useState([
     [0, 0, 0, 0],
@@ -113,6 +103,12 @@ function Game() {
         }
       }
     }
+
+    if (checkIfGameWon(newArray)) {
+      setGameWon(true);
+      return;
+    }
+
     if (JSON.stringify(oldGrid) !== JSON.stringify(newArray)) {
       addNumber(newArray);
     }
@@ -162,6 +158,12 @@ function Game() {
         }
       }
     }
+
+    if (checkIfGameWon(newArray)) {
+      setGameWon(true);
+      return;
+    }
+
     if (JSON.stringify(newArray) !== JSON.stringify(oldData)) {
       addNumber(newArray);
     }
@@ -211,6 +213,12 @@ function Game() {
         }
       }
     }
+
+    if (checkIfGameWon(b)) {
+      setGameWon(true);
+      return;
+    }
+
     if (JSON.stringify(b) !== JSON.stringify(oldData)) {
       addNumber(b);
     }
@@ -259,6 +267,12 @@ function Game() {
         }
       }
     }
+
+    if (checkIfGameWon(b)) {
+      setGameWon(true);
+      return;
+    }
+
     if (JSON.stringify(oldData) !== JSON.stringify(b)) {
       addNumber(b);
     }
@@ -299,22 +313,31 @@ function Game() {
       return false;
     }
 
+    if (checkIfGameWon(data)) {
+      setGameWon(true);
+      return false;
+    }
+
     return true;
   };
+
+  // Check if Game Won
+  const checkIfGameWon = (grid) => {
+    for (let i = 0; i < grid.length; i++) {
+      for (let j = 0; j < grid[i].length; j++) {
+        if (grid[i][j] === WINNING_NUMBER) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
   // Reset
   const resetGame = () => {
     setGameOver(false);
+    setGameWon(false);
     setScore(0);
-    // const emptyGrid = [
-    //       [0, 0, 0, 0, 0, 0, 0, 0],
-    //       [0, 0, 0, 0, 0, 0, 0, 0],
-    //       [0, 0, 0, 0, 0, 0, 0, 0],
-    //       [0, 0, 0, 0, 0, 0, 0, 0],
-    //       [0, 0, 0, 0, 0, 0, 0, 0],
-    //       [0, 0, 0, 0, 0, 0, 0, 0],
-    //       [0, 0, 0, 0, 0, 0, 0, 0],
-    //       [0, 0, 0, 0, 0, 0, 0, 0],
-    //     ];
 
     const emptyGrid = [
       [0, 0, 0, 0],
@@ -326,34 +349,30 @@ function Game() {
     addNumber(emptyGrid);
     addNumber(emptyGrid);
     setData(emptyGrid);
+    // initialize();
   };
 
   const handleKeyDown = (event) => {
     event.preventDefault();
-    if (gameOver) {
+    if (gameOver || gameWon) {
       return;
     }
     switch (event.keyCode) {
       case UP_ARROW:
-        // alert("up");
-        // console.table(data);
         swipeUp();
-        // console.table(data);
+
         break;
       case DOWN_ARROW:
-        // console.table(data);
         swipeDown();
-        // console.table(data);
+
         break;
       case LEFT_ARROW:
-        // console.table(data);
         swipeLeft();
-        // console.table(data);
+
         break;
       case RIGHT_ARROW:
-        // console.table(data);
         swipeRight();
-        // console.table(data);
+
         break;
       default:
         break;
@@ -370,7 +389,6 @@ function Game() {
     // eslint-disable-next-line
   }, []);
 
-  // This is a custom function
   useEvent("keydown", handleKeyDown);
 
   return (
@@ -428,7 +446,7 @@ function Game() {
                     color: "#776E65",
                   }}
                 >
-                  Game Over
+                  Game Over!
                 </div>
                 <div>
                   <div
@@ -445,6 +463,36 @@ function Game() {
               </div>
             </div>
           )}
+
+          {gameWon && (
+            <div style={style.gameOverOverlay}>
+              <div>
+                <div
+                  style={{
+                    fontSize: 30,
+                    fontFamily: "sans-serif",
+                    fontWeight: "900",
+                    color: "#776E65",
+                  }}
+                >
+                  You Won!
+                </div>
+                <div>
+                  <div
+                    style={{
+                      flex: 1,
+                      marginTop: "auto",
+                    }}
+                  >
+                    <div onClick={resetGame} style={style.tryAgainButton}>
+                      Try Again
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           <Swipe
             onSwipeDown={() => {
               swipeDown();
