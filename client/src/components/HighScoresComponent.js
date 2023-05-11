@@ -15,7 +15,7 @@ const HighScores = () => {
 
   return (
 
-    <div>
+    <div className="bg-white mt-4 p-4">
       <div className="columns-2 mt-4 font-serif text-gray-700">
         <h4>Player</h4>
         <h4>Scores</h4>

@@ -79,7 +79,7 @@ const Profile = () => {
     }
   
     return (
-        <div>
+        <div className='bg-white mt-4 p-4'>
         <div className="px-4 font-serif sm:px-0 mt-2">
           <h3 className="text-base font-semibold leading-7 text-gray-900 uppercase">{profile.username}</h3>
           <p className="mt-1 max-w-2xl text-md leading-6 text-gray-500">Profile</p>
@@ -93,7 +93,7 @@ const Profile = () => {
             
             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm leading-6 text-gray-900 font-serif">Your High Scores</dt>
-              <dd className="text-sm leading-6 text-gray-600 font-serif sm:col-span-2 sm:mt-0">
+              <dd className="text-[32px] text-clay leading-6 font-serif sm:col-span-2 sm:mt-0">
              {profile.scores.map((score) => (
               <p>{score.points}</p>
              ))}

@@ -29,7 +29,7 @@ const features = [
 
 export default function Example() {
   return (
-    <div className="bg-white font-serif">
+    <div className="bg-white font-serif mt-4">
       <section aria-labelledby="features-heading" className="relative">
         <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 sm:pb-32 lg:px-8 lg:pt-32">
           <div className="text-center">
