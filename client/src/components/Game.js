@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import cloneDeep from "lodash.clonedeep";
-import { useEvent, getColors } from "./Tile";
+import { useEvent, getColors } from "./Tile.js";
 import Swipe from "react-easy-swipe";
+import { style } from "./GameStyles.js";
 
 function Game() {
   const [score, setScore] = useState(0);
@@ -24,15 +25,10 @@ function Game() {
 
   // Initialize
   const initialize = () => {
-    // console.log("CALLING INITIALIZE");
-
     let newGrid = cloneDeep(data);
-    console.log(newGrid);
 
     addNumber(newGrid);
-    console.table(newGrid);
     addNumber(newGrid);
-    console.table(newGrid);
     setData(newGrid);
   };
 
@@ -66,7 +62,6 @@ function Game() {
   };
   // Swipe Left
   const swipeLeft = (dummy) => {
-    console.log("swipe left");
     let oldGrid = data;
     let newArray = cloneDeep(data);
     let newScore = score;
@@ -121,7 +116,6 @@ function Game() {
   };
   // Swipe Right
   const swipeRight = (dummy) => {
-    console.log("swipe right");
     let oldData = data;
     let newArray = cloneDeep(data);
     let newScore = score;
@@ -176,8 +170,6 @@ function Game() {
   };
   // Swipe Down
   const swipeDown = (dummy) => {
-    console.log("swipe down");
-    console.log(data);
     let b = cloneDeep(data);
     let oldData = JSON.parse(JSON.stringify(data));
     let newScore = score;
@@ -231,7 +223,6 @@ function Game() {
   };
   // Swipe Up
   const swipeUp = (dummy) => {
-    console.log("swipe up");
     let b = cloneDeep(data);
     let oldData = JSON.parse(JSON.stringify(data));
     let newScore = score;
@@ -285,7 +276,6 @@ function Game() {
   };
   // Check Gameover
   const checkIfGameOver = () => {
-    console.log("CHECKING GAME OVER");
     // let original = cloneDeep(data);
     let checker = swipeLeft(true);
 
@@ -294,9 +284,6 @@ function Game() {
     }
 
     let checker2 = swipeDown(true);
-    console.log("CHECKER DOWN");
-    console.table(data);
-    console.table(checker2);
     if (JSON.stringify(data) !== JSON.stringify(checker2)) {
       return false;
     }
@@ -386,7 +373,6 @@ function Game() {
 
   useEffect(() => {
     initialize();
-    // eslint-disable-next-line
   }, []);
 
   useEvent("keydown", handleKeyDown);
@@ -532,55 +518,6 @@ const Block = ({ num }) => {
       {num !== 0 ? num : ""}
     </div>
   );
-};
-
-const style = {
-  blockStyle: {
-    height: 80,
-    width: 80,
-    background: "lightgray",
-    margin: 3,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: 45,
-    fontWeight: "800",
-    color: "white",
-  },
-  newGameButton: {
-    padding: 10,
-    background: "#846F5B",
-    color: "#F8F5F0",
-    width: 95,
-    borderRadius: 7,
-    fontWeight: "900",
-    marginLeft: "auto",
-    marginBottom: "auto",
-    cursor: "pointer",
-  },
-  tryAgainButton: {
-    padding: 10,
-    background: "#846F5B",
-    color: "#F8F5F0",
-    width: 80,
-    borderRadius: 7,
-    fontWeight: "900",
-    cursor: "pointer",
-    margin: "auto",
-    marginTop: 20,
-  },
-  gameOverOverlay: {
-    position: "absolute",
-    height: "100%",
-    width: "100%",
-    left: 0,
-    top: 0,
-    borderRadius: 5,
-    background: "rgba(238,228,218,.5)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
 };
 
 export default Game;
