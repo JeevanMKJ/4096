@@ -3,11 +3,33 @@ import cloneDeep from "lodash.clonedeep";
 import { useEvent, getColors } from "./Tile.js";
 import Swipe from "react-easy-swipe";
 import { style } from "./GameStyles.js";
+import { useMutation } from '@apollo/client';
+
+import { SAVE_SCORE } from '../utils/mutations';
+import { QUERY_SCORES, QUERY_ME } from '../utils/queries';
+
+import Auth from '../utils/auth';
 
 function Game() {
   const [score, setScore] = useState(0);
   const WINNING_NUMBER = 4096;
   const [gameWon, setGameWon] = useState(false);
+  const [saveScore, { error }] = useMutation(SAVE_SCORE);
+
+  const handleScoreSave = async () => {
+console.log(Auth.getProfile().data)
+    try {
+      const { data } = await saveScore({
+        variables: {
+          points: score,
+          player: Auth.getProfile().data.username,
+        },
+      });
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const UP_ARROW = 38;
   const DOWN_ARROW = 40;
@@ -54,6 +76,7 @@ function Game() {
         let gameOverr = checkIfGameOver();
         if (gameOverr) {
           alert("game over");
+          
           // setGameOver(true);
         }
         // setGameOver(true);
@@ -322,6 +345,7 @@ function Game() {
 
   // Reset
   const resetGame = () => {
+    handleScoreSave()
     setGameOver(false);
     setGameWon(false);
     setScore(0);
@@ -367,7 +391,10 @@ function Game() {
 
     let gameOverr = checkIfGameOver();
     if (gameOverr) {
+     
+      
       setGameOver(true);
+      
     }
   };
 

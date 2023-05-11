@@ -33,19 +33,19 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
 `
 
 export const SAVE_SCORE = gql `
-mutation saveScore($player: player, $points: points) {
-saveScore(player: $player, points: $points) {
-  _id
-  player
-  points
-}
+mutation SaveScore($player: String!, $points: Int) {
+  saveScore(player: $player, points: $points) {
+    _id
+    player
+    points
+  }
 }
 `
 
 export const REMOVE_USER = gql `
-mutation removeUser($userId: userId) {
-removeUser(userId: $userId) {
-  username
-}
+mutation removeUser($userId: ID!) {
+  removeUser(userId: $userId) {
+    username
+  }
 }
 `
