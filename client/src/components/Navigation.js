@@ -37,25 +37,25 @@ export default function Navbar({ fixed }) {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="nav-item  text-[35px]">
+              <li className="nav-item hover:bg-clay rounded-full">
                 <a
-                  className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage"
+                  className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage hover:no-underline hover:no-underline"
                   href="highscores"
                 >
                   <span className="ml-2">High Scores</span>
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item hover:bg-clay rounded-full">
                 <a
-                  className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage"
+                  className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage hover:no-underline"
                   href="/howtoplay"
                 >
                   <span className="ml-2">How to Play</span>
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item hover:bg-clay rounded-full">
                 <a
-                  className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage"
+                  className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage hover:no-underline"
                   href="/me"
                 >
                   <span className="ml-2">Profile</span>
@@ -63,9 +63,9 @@ export default function Navbar({ fixed }) {
               </li>
               {Auth.loggedIn() ? (
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item hover:bg-clay rounded-full">
                     <button
-                      className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage"
+                      className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage hover:no-underline"
                       onClick={logout}
                     >
                       <span className="ml-2">Logout</span>
@@ -74,17 +74,17 @@ export default function Navbar({ fixed }) {
                 </>
               ) : (
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item hover:bg-clay rounded-full">
                     <a
-                      className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage"
+                      className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage hover:no-underline"
                       href="/login"
                     >
                       <span className="ml-2">Login</span>
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item hover:bg-clay rounded-full">
                     <a
-                      className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage"
+                      className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:text-sage hover:no-underline"
                       href="/signup"
                     >
                       <span className="ml-2">Sign up</span>

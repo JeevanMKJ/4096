@@ -394,6 +394,8 @@ function Game() {
               fontSize: 24,
               color: "#776e65",
               alignSelf: "center",
+              fontFamily: "serif",
+              fontSize: 25,
             }}
           >
             Score: {score}
@@ -402,6 +404,8 @@ function Game() {
             style={{
               flex: 1,
               marginTop: "auto",
+              fontFamily: "serif",
+              fontSize: 20,
             }}
           >
             <div onClick={resetGame} style={style.newGameButton}>

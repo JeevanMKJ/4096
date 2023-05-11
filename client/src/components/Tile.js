@@ -34,6 +34,8 @@ export const getColors = (num) => {
       return "#EA7346";
     case 2048:
       return "#E99E75";
+    case 4096:
+      return "#F9A197";
     default:
       return "#EEE6DE";
   }
