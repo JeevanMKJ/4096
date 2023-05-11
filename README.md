@@ -20,6 +20,7 @@ Whether you're trying to take a break, are bored or just want to brush up on you
 ![Screenshot](assets/highScores.png)
 ![Screenshot](assets/howToPlay.png)
 ![Screenshot](assets/profile.png)
+![Screenshot](assets/loggedOut.png)
 ![Screenshot](assets/logIn.png)
 ![Screenshot](assets/signUp.png)
 
