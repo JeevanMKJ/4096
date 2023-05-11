@@ -15,10 +15,10 @@ const HighScores = () => {
 
   return (
 
-    <div>
-      <div className="columns-2 mt-4 font-serif text-gray-700">
-        <h4>Player</h4>
-        <h4>Scores</h4>
+    <div className='bg-white p-4 mt-2'>
+      <div className="columns-2 mt-4 font-serif text-sage text-bold uppercase">
+        <h5>Player</h5>
+        <h5>Scores</h5>
       </div>
       <br></br>
       <div>

@@ -79,7 +79,7 @@ const Profile = () => {
     }
   
     return (
-        <div>
+        <div className='bg-white pt-4 mt-2'>
         <div className="px-4 font-serif sm:px-0 mt-2">
           <h3 className="text-base font-semibold leading-7 text-gray-900 uppercase">{profile.username}</h3>
           <p className="mt-1 max-w-2xl text-md leading-6 text-gray-500">Profile</p>

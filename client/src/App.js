@@ -10,7 +10,7 @@ import { setContext } from "@apollo/client/link/context";
 
 import Navigation from "./components/Navigation.js";
 import Game from "./components/Game.js";
-// import Footer from "./components/FooterComponent.js";
+import Footer from "./components/FooterComponent.js";
 import HighScores from "./components/HighScoresComponent.js";
 import HowToPlay from "./components/HowToPlayComponent.js";
 import Profile from "./components/ProfileComponent.js";
@@ -52,7 +52,7 @@ function App() {
               <Route path="/signup" element={<Signup />} />
             </Routes>
           </div>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>
