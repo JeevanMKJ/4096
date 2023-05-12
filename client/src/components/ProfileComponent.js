@@ -4,15 +4,13 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 
-// import HighScores from "./HighScoresComponent";
-
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import { REMOVE_USER } from '../utils/mutations';
 
 
 import Auth from '../utils/auth';
 
-const Profile = ( users ) => {
+const Profile = () => {
  const [removeUser, { error }] = useMutation(REMOVE_USER)
   const [showModal, setShowModal] = React.useState(false);
   const { userId } = useParams();
@@ -23,6 +21,7 @@ const Profile = ( users ) => {
       const { data } = await removeUser({
         variables: { userId },
       });
+    Auth.logout()
     } catch (err) {
       console.error(err);
     }
@@ -37,9 +36,9 @@ const Profile = ( users ) => {
       variables: { userId: userId },
     }
   );
-
+ 
   const profile = data?.me || data?.profile || {};
-  console.log(data)
+
   // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data._id === userId) {
     return <Navigate to="/me" />;
@@ -48,7 +47,8 @@ const Profile = ( users ) => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  const sortedScores = [...profile.scores].sort((a, b) => b.points - a.points);
+  // console.log(data.profile)
+  
   if (!profile?.username) {
     return (
       <>
@@ -87,6 +87,13 @@ const Profile = ( users ) => {
                   Login
 
                 </a>
+                <a href="/"
+                  className="bg-emerald-500 text-black active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  type="button"
+                >
+                  Go back
+
+                </a>
               </div>
             </div>
           </div>
@@ -95,7 +102,7 @@ const Profile = ( users ) => {
       </>
       );
     }
-  
+    const sortedScores = [...profile.scores].sort((a, b) => b.points - a.points);
     return (
         <div className='bg-white mt-4 p-4'>
         <div className="px-4 font-serif sm:px-0 mt-2">
@@ -117,8 +124,17 @@ const Profile = ( users ) => {
              ))}
               </dd>
             </div>
+            <div>
+        <button 
+        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+        onClick={() => handleRemoveUser(profile._id)}
+        >
+  Delete Profile
+</button>
+        </div>
           </dl>        
         </div>
+   
       </div>
 
   );
