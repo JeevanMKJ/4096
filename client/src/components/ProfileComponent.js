@@ -48,7 +48,7 @@ const Profile = ( users ) => {
   if (loading) {
     return <div>Loading...</div>;
   }
-
+  const sortedScores = [...profile.scores].sort((a, b) => b.points - a.points);
   if (!profile?.username) {
     return (
       <>
@@ -112,7 +112,7 @@ const Profile = ( users ) => {
             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm leading-6 text-gray-900 font-serif">Your High Scores</dt>
               <dd className="text-[32px] text-clay leading-6 font-serif sm:col-span-2 sm:mt-0">
-             {profile.scores.map((score) => (
+             {sortedScores.map((score) => (
               <p>{score.points}</p>
              ))}
               </dd>
