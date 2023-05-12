@@ -22,6 +22,7 @@ const Profile = () => {
         variables: { userId },
       });
     Auth.logout()
+    window.location.assign('/');
     } catch (err) {
       console.error(err);
     }
