@@ -50,6 +50,10 @@ function App() {
               <Route path="/me" element={<Profile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route 
+            path='*'
+            element={<h1 className='display-2'>Wrong page!</h1>}
+          />
             </Routes>
           </div>
           <Footer />
