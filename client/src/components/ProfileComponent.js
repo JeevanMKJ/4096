@@ -127,7 +127,7 @@ const Profile = () => {
             </div>
             <div>
         <button 
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+        className="bg-cran hover:bg-clay text-white font-bold mt-4 py-2 px-4 rounded-full font-serif"
         onClick={() => handleRemoveUser(profile._id)}
         >
   Delete Profile
