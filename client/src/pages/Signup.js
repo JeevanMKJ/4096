@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import { Link } from 'react-router-dom';
 
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -42,21 +42,28 @@ const Signup = () => {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 font-serif">
         <div className="sm:mx-auto sm:w-full sm:max-w-md text-center text-bold">
-          <h1 className="mx-auto h-10 w-auto text-gray-600">Sign up for an account</h1>
+          <h1 className="mx-auto h-10 w-auto text-gray-600">
+            Sign up for an account
+          </h1>
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"></h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-            <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
-            <div>
+            <form
+              className="space-y-6"
+              action="#"
+              method="POST"
+              onSubmit={handleFormSubmit}
+            >
+              <div>
                 <label
                   htmlFor="username"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Username
                 </label>
-                
+
                 <div className="mt-2">
                   <input
                     id="username"
@@ -78,7 +85,7 @@ const Signup = () => {
                 >
                   Email address
                 </label>
-                
+
                 <div className="mt-2">
                   <input
                     id="email"
@@ -116,23 +123,6 @@ const Signup = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <input
-                    id="remember-me"
-                    name="remember-me"
-                    type="checkbox"
-                    className="h-4 w-4 mt-1 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                  />
-                  <label
-                    htmlFor="remember-me"
-                    className="ml-1 block text-sm leading-6 text-gray-600"
-                  >
-                    Remember me
-                  </label>
-                </div>
-              </div>
-
               <div>
                 <button
                   type="submit"
@@ -142,16 +132,12 @@ const Signup = () => {
                 </button>
               </div>
             </form>
-            {error && (
-              <div className="text-white">
-                {error.message}
-              </div>
-            )}
+            {error && <div className="text-white">{error.message}</div>}
           </div>
         </div>
       </div>
     </>
   );
- }
+};
 
- export default Signup;
+export default Signup;

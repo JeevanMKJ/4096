@@ -25,6 +25,7 @@ export default function Example() {
                 <a
                   key={item.name}
                   href={item.href}
+                  target="_blank"
                   className="text-gray-400 hover:text-gray-500"
                 >
                   <span className="sr-only">{item.name}</span>
@@ -34,7 +35,7 @@ export default function Example() {
             </div>
             <div className="mt-8 md:order-1 md:mt-0">
               <p className="text-center text-xs leading-5 text-gray-500">
-               Made with Love ❤️ High Fives
+                Made with Love ❤️ High Fives
               </p>
             </div>
           </div>
