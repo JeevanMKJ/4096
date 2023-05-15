@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN } from '../utils/mutations';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "../utils/mutations";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN);
 
   // update state based on form input changes
@@ -35,23 +35,29 @@ const Login = (props) => {
 
     // clear form values
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
- 
- 
- return (
+
+  return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 font-serif">
         <div className="sm:mx-auto sm:w-full sm:max-w-md text-center text-bold">
-          <h1 className="mx-auto h-10 w-auto text-gray-600">Login to your account</h1>
+          <h1 className="mx-auto h-10 w-auto text-gray-600">
+            Login to your account
+          </h1>
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"></h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-            <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
+            <form
+              className="space-y-6"
+              action="#"
+              method="POST"
+              onSubmit={handleFormSubmit}
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -59,7 +65,7 @@ const Login = (props) => {
                 >
                   Email address
                 </label>
-                
+
                 <div className="mt-2">
                   <input
                     id="email"
@@ -97,32 +103,6 @@ const Login = (props) => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <input
-                    id="remember-me"
-                    name="remember-me"
-                    type="checkbox"
-                    className="h-4 w-4 mt-1 rounded border-gray-400 text-indigo-600 focus:ring-indigo-600"
-                  />
-                  <label
-                    htmlFor="remember-me"
-                    className="ml-1 block text-sm leading-6 text-gray-600"
-                  >
-                    Remember me
-                  </label>
-                </div>
-
-                <div className="text-sm leading-6">
-                  <a
-                    href="#"
-                    className="font-semibold text-garden hover:text-sage"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-              </div>
-
               <div>
                 <button
                   type="submit"
@@ -132,22 +112,21 @@ const Login = (props) => {
                 </button>
               </div>
             </form>
-            <div className='mt-3 text-gray-600'>
-            <span>
-              Don't have an account?
-              <Link to="/signup" className='text-garden hover:text-sage'> Sign up</Link>
-            </span>
+            <div className="mt-3 text-gray-600">
+              <span>
+                Don't have an account?
+                <Link to="/signup" className="text-garden hover:text-sage">
+                  {" "}
+                  Sign up
+                </Link>
+              </span>
             </div>
-            {error && (
-              <div className="text-white">
-                {error.message}
-              </div>
-            )}
+            {error && <div className="text-white">{error.message}</div>}
           </div>
         </div>
       </div>
     </>
   );
- }
+};
 
- export default Login;
+export default Login;

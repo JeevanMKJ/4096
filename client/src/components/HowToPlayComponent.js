@@ -1,29 +1,13 @@
-
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
-
-
 const features = [
   {
     name: "Game objective?",
     description:
-      "Waste as much … I mean play for as long as you can and be the last man standing with the highest score. Relish in the feeling of accomplishment when you hit the TOP 10.",
+      "Waste as much … I mean play for as long as you can and be the last man standing with the highest score. Relish in the feeling of accomplishment when you hit the TOP 3.",
   },
   {
     name: "How to move?",
-    description: "Use your arrow keys to move the board.",
+    description:
+      "Use your arrow keys to move the board. Add two numbers of the same value and do this till you reach 4096. Or die trying.",
   },
 ];
 
